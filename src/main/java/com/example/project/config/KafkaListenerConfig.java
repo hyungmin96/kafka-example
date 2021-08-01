@@ -1,7 +1,6 @@
 package com.example.project.config;
 
 import com.example.project.dto.ChattingMessage;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.springframework.context.annotation.Bean;
@@ -34,8 +33,8 @@ public class KafkaListenerConfig {
     @Bean
     public Map<String, Object> consumerConfigurations(){
         Map<String, Object> configurations = new HashMap<>();
-        configurations.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG,"localhost:9092,localhost:9093");
-        configurations.put(ConsumerConfig.GROUP_ID_CONFIG, "group_id");
+        configurations.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, KafkaConstants.KAFKA_BROKER);
+        configurations.put(ConsumerConfig.GROUP_ID_CONFIG, KafkaConstants.GROUP_ID);
         configurations.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
         configurations.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, JsonDeserializer.class);
         configurations.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");

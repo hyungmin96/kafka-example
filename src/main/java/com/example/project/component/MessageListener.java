@@ -1,5 +1,6 @@
 package com.example.project.component;
 
+import com.example.project.config.KafkaConstants;
 import com.example.project.dto.ChattingMessage;
 import lombok.RequiredArgsConstructor;
 import org.springframework.kafka.annotation.KafkaListener;
@@ -13,8 +14,8 @@ public class MessageListener {
     private final SimpMessagingTemplate simpMessagingTemplate;
 
     @KafkaListener(
-            topics = "topic",
-            groupId = "group_id"
+            topics = KafkaConstants.KAFKA_TOPIC,
+            groupId = KafkaConstants.GROUP_ID
     )
     public void listen(ChattingMessage message){
         System.out.println("sending message..");
